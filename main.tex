@@ -1,0 +1,172 @@
+\documentclass{beamer}
+\usetheme{CambridgeUS}
+\usepackage{listings}
+\usepackage{blkarray}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{all}
+\usetikzlibrary{calc,math}
+\usepackage{float}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\usepackage[export]{adjustbox}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{bm}
+
+\usetikzlibrary{automata, positioning}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\mbf}{\mathbf}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\providecommand{\abs}[1]{\vert#1\vert}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+\usepackage{amsmath}
+\setbeamertemplate{caption}[numbered]{}                               
+                               
+
+\title{AI1110 Assignment 9}
+\author{DEEPSHIKHA-CS21BTECH11016}
+\date{\today}
+\logo{\large \LaTeX{}}
+
+
+\begin{document}
+\newcommand{\Int}{\int\limits}
+\begin{frame}
+		\titlepage
+	\end{frame}
+
+\begin{frame}{Outline}
+\begin{block}
+\tableofcontents
+\end{block}
+\end{frame}
+
+\section{Abstract}
+\begin{frame}{Abstract}
+\begin{itemize}
+\item 	This document contains the solution to Question of Chapter 6 of Papoulis book.
+\end{itemize}
+\end{frame}
+	
+\section{Question}
+\begin{frame}{Question}
+\begin{block}{\textbf{ Exercise 6.58}}
+The random variables x and y are jointly distributed over the region 0 $<$ x $<$ y $<$ 1 as
+\begin{align}
+   f_{xy}\brak{x,y}=
+\begin{cases}
+kx, & 0<x<y<1\\
+0. & \text{otherwise}
+\end{cases} 
+\end{align}
+for some k. Determine k. Find the variances of x and y. What is the covariance between x and y? 
+
+\end{block}
+\end{frame}
+	
+\section{Theory}
+\begin{frame}{Theory}
+
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{|c|c|c|c|c}
+    \hline
+    \textbf{Expression} & \textbf{Formula}\\
+    \hline\hline
+    Joint P.d.f & $\iint f_{XY}\brak{x,y}\,dx\,dy$\\
+    \hline
+    $E[X]$ & $\Int_{-\infty}^{+\infty}x f_{X}\brak{x}\,dx$\\
+    \hline
+    $E[X^2]$ & $\Int_{-\infty}^{+\infty}x^2 f_{X}\brak{x}\,dx$\\
+    \hline
+    $E[XY]$ & $\iint xy f_{XY}\brak{xy} \,dy\,dx$\\
+    \hline
+    $Var\brak{X}$ & $E[X^2]-\brak{E^2[X]^2}$\\
+    \hline
+    $Cov\brak{X,Y}$ & $E[XY]-E[X].E[Y]$\\
+    \hline
+    \end{tabular}
+    \caption{Two random variables}
+    \label{tab:my_label}
+\end{table}
+\end{frame}
+
+\section{Solution}
+\begin{frame}{Value of k}
+\begin{align}
+  \Int_{-\infty}^{+\infty} \Int_{-\infty}^{+\infty}f_{XY}\brak{x,y}\,dx\,dy &= 1\\
+  \implies \Int_{0}^{1} \Int_{x}^{1} kx \,dy\,dx=k \int_{0}^{1} x\brak{1-x} \,dx &= 1\\
+  \implies \frac{k}{6}=1  \implies \boxed{k=1}
+\end{align}
+\end{frame}
+
+\begin{frame}{PDF}
+\begin{align}
+    f_{X}\brak{x}=\Int_{x}^{1} 6x \,dy&=6x\brak{1-x} &,0<x<1\\
+    f_{Y}\brak{y}=\Int_{0}^{1} 6x \,dx&=3y^ 2&,0<y<1 
+\end{align}
+\end{frame}
+
+\begin{frame}{Expectation}
+    \begin{align}
+        E[X]&=\Int_{0}^{1}x f_{X}\brak{x}\,dx=6{\brak{\frac{x^3}{3}-\frac{x^4}{4}}}\Biggr|_{0}^{1}=\frac{1}{2}\\
+        E[X^2]&=\Int_{0}^{1} y^2 f_{Y}\,dy=6{\brak{\frac{x^4}{4}-\frac{x^5}{5}}}\Biggr|_{0}^{1}=\frac{3}{10}
+    \end{align}
+
+    \begin{align}
+        E[Y]&=\Int_{0}^{1}y f_{Y}\brak{y}\,dy=3{\frac{y^4}{4}}\Biggr|_{0}^{1}=\frac{3}{4}\\
+E[Y^2]&=\Int_{0}^{1}y^2 f_{Y}\brak{y}\,dy=3{\frac{y^5}{5}}\Biggr|_{0}^{1}=\frac{3}{5}
+    \end{align}
+\end{frame}
+
+\begin{frame}{Expectation}
+    \begin{align}
+      E[XY]&=\Int_{0}^{1} \Int_{0}^{x}xy f_{XY}\brak{xy} \,dy\,dx\\
+      &=\Int_{0}^{1} 3x\brak{1-x^2}\,dx\\
+      &=3 {\brak{\frac{x^3}{3}-\frac{x^5}{5}}}\Biggr|_{0}^{1}\\
+      &=3\brak{\frac{1}{3}-\frac{1}{5}}=\frac{2}{5}
+    \end{align}
+    
+\end{frame}
+
+\begin{frame}{Variance}
+\begin{enumerate}
+    \item 
+    \begin{align}
+    Var\brak{X}&=\frac{3}{10}-\frac{1}{4}=\boxed{\frac{1}{20}}
+\end{align}
+\item
+\begin{align}
+    Var\brak{Y}&=\frac{3}{5}-\frac{9}{16}=\boxed{\frac{3}{80}}
+\end{align}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Covariance}
+\begin{align}
+    Cov\brak{X,Y}=\frac{2}{5}-\frac{1}{2}.\frac{3}{4}=\boxed{\frac{1}{40}}
+\end{align}
+    
+\end{frame}
+
+
+
+\end{document}
